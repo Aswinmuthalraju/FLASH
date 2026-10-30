@@ -1,0 +1,14 @@
+numpy
+pandas
+scikit-learn
+hmmlearn
+lightgbm
+transformers
+torch
+duckdb
+pyarrow
+streamlit
+pytest
+pyyaml
+yfinance
+matplotlib

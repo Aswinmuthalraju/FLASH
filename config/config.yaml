@@ -1,0 +1,72 @@
+# flash-market configuration
+seed: 7
+
+symbols: [RELIANCE, TCS, HDFCBANK, INFY, ICICIBANK, HINDUNILVR, ITC, SBIN, BHARTIARTL, KOTAKBANK]
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  duckdb: data/flash.duckdb
+  models: models
+  reports: reports
+
+market:
+  tz: Asia/Kolkata
+  session_open: "09:15"
+  bars_per_day: 375          # 09:15 .. 15:29 inclusive, bar label = bar OPEN time
+  min_day_coverage: 0.5
+
+synthetic:
+  start: "2024-01-01"
+  n_days: 60
+  news_per_stock_day: 3.0
+  market_news_per_day: 0.7
+
+split:                        # fractions of trading DAYS, chronological
+  train: 0.6
+  val: 0.2                    # test = remainder
+
+labels:
+  horizons: [5, 15, 30]
+  primary_horizon: 15
+  k: 1.0
+  vol_window: 30
+  scale_sqrt_h: true          # barrier = k * sigma_1bar * sqrt(h)  (see README)
+
+features:
+  w_mid: 20
+  w_long: 30
+
+news:
+  finbert: ProsusAI/finbert
+  batch_size: 32
+  decay_tau_min: 30.0         # exponential decay time constant (trading minutes)
+  max_age_min: 240            # older than this => zeros ("no news")
+  market_wide_relevance: 0.3
+  memory_k: 5
+  impact_horizon: 15          # bars used for the stored forward return
+
+regime:
+  n_states: 4
+  pca_target_var: 0.90
+  gmm_seed: 7
+
+fusion:
+  lgbm:
+    n_estimators: 400
+    learning_rate: 0.05
+    num_leaves: 31
+    min_child_samples: 100
+    subsample: 0.8
+    subsample_freq: 1
+    colsample_bytree: 0.8
+    early_stopping_rounds: 30
+  calibration: isotonic       # isotonic | platt
+
+inference:
+  gate_threshold: 0.50        # max prob below this => "NO STRONG SIGNAL"
+
+backtest:
+  threshold: 0.55
+  cost_bps_per_side: 3.0
+  entry_delay_bars: 1
