@@ -116,7 +116,7 @@ def test_confidence_gate_and_explanations(world):
     pred.gate = 0.0
     assert last is not None
     ex = pred.explain(15, top=5)
-    assert set(ex["group_contribution"]) == {"market", "regime", "news", "history"}
+    assert set(ex["group_contribution"]) == {"market", "regime", "news", "history", "derived", "derived_x"}
     assert len(ex["top_features"]) == 5
     # contributions + bias reproduce the raw LightGBM margin for that class
     raw = pred.boosters[15].predict(pred.X1, raw_score=True, num_threads=1)[0]

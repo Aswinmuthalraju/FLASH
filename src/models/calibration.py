@@ -20,12 +20,20 @@ def _logit(p):
 
 class Calibrator:
     def __init__(self, method: str = "isotonic", n_classes: int = 3):
-        assert method in ("isotonic", "platt")
+        assert method in ("isotonic", "platt", "temperature")
         self.method, self.C = method, n_classes
         self.maps: list = []
 
     def fit(self, P: np.ndarray, y: np.ndarray) -> "Calibrator":
         self.maps = []
+        if self.method == "temperature":
+            from scipy.optimize import minimize_scalar
+            from scipy.special import softmax
+
+            L = np.log(np.clip(P, 1e-9, 1))
+            nll = lambda T: -np.log(np.clip(softmax(L / T, axis=1)[np.arange(len(y)), y], 1e-12, 1)).mean()  # noqa: E731
+            self.maps = [float(minimize_scalar(nll, bounds=(0.5, 3.0), method="bounded").x)]
+            return self
         for c in range(self.C):
             t = (y == c).astype(float)
             if self.method == "isotonic":
@@ -43,6 +51,9 @@ class Calibrator:
         return 1.0 / (1.0 + np.exp(-(a * _logit(p) + b)))
 
     def transform(self, P: np.ndarray) -> np.ndarray:
+        if self.method == "temperature":
+            Q = np.clip(P, 1e-9, 1) ** (1.0 / self.maps[0])
+            return Q / Q.sum(axis=1, keepdims=True)
         Q = np.column_stack([self._apply_col(c, P[:, c]) for c in range(self.C)])
         return Q / Q.sum(axis=1, keepdims=True)
 
@@ -58,7 +69,10 @@ class FastCalibrator:
         self.maps = exported["maps"]
 
     def __call__(self, p: np.ndarray, out: np.ndarray) -> np.ndarray:
-        if self.method == "isotonic":
+        if self.method == "temperature":
+            np.maximum(p, 1e-9, out=out)
+            np.power(out, 1.0 / self.maps[0], out=out)
+        elif self.method == "isotonic":
             for c, (xs, ys) in enumerate(self.maps):
                 out[c] = np.interp(p[c], xs, ys)
         else:

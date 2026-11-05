@@ -40,3 +40,41 @@ class FusionLGBM:
 
 def load_booster(model_str: str) -> lgb.Booster:
     return lgb.Booster(model_str=model_str)
+
+
+class FusionBlend:
+    """LightGBM + L2 logistic probability blend (the logistic leg adds a smooth, low-variance linear component).
+    P = (1 - w) * P_lgbm + w * P_logit. Temperature calibration is applied afterwards by the Calibrator."""
+
+    def __init__(self, fusion_cfg: dict, seed: int = 7):
+        self.gbm = FusionLGBM(fusion_cfg["lgbm"], seed)
+        self.w = float(fusion_cfg.get("blend_logit_weight", 0.0))
+        self.C = float(fusion_cfg.get("logit_C", 0.05))
+        self.logit = None
+
+    def fit(self, Xtr, ytr, Xva, yva) -> "FusionBlend":
+        from src.models.baseline_logistic import BaselineLogistic
+
+        self.gbm.fit(Xtr, ytr, Xva, yva)
+        if self.w > 0:
+            self.logit = BaselineLogistic(C=self.C, max_iter=300).fit(np.nan_to_num(Xtr), ytr)
+        return self
+
+    def predict_proba(self, X: np.ndarray) -> np.ndarray:
+        P = self.gbm.predict_proba(X)
+        if self.logit is not None:
+            P = (1 - self.w) * P + self.w * self.logit.predict_proba(np.nan_to_num(X))
+        return P
+
+    @property
+    def best_iteration(self) -> int:
+        return self.gbm.best_iteration
+
+    def model_string(self) -> str:
+        return self.gbm.model_string()
+
+    def contributions(self, x):
+        return self.gbm.contributions(x)
+
+    def export_logit(self) -> dict | None:
+        return None if self.logit is None else {**self.logit.export(), "w": self.w}

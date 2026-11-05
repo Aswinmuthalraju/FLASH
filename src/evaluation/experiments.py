@@ -14,11 +14,12 @@ import pandas as pd
 from src.config import resolve
 from src.data.align import Calendar
 from src.evaluation.metrics import brier_multiclass, conf_matrix, evaluate
+from src.features.derived import DERIVED, ND, derive_matrix, derived_index
 from src.features.market_features import FEATURES, IDX, PRICE_IDX, REGIME_FEATURES, build_table
 from src.features.news_features import (NEWS_DIM, NEWS_FEATURES, build_events, memory_from_events, news_matrix)
 from src.models.baseline_logistic import BaselineLogistic
 from src.models.calibration import Calibrator
-from src.models.fusion_lgbm import FusionLGBM
+from src.models.fusion_lgbm import FusionBlend
 from src.models.hmm_regime import HMMRegime, group_lengths
 from src.models.regime_pca_gmm import RegimePCA
 from src.news.sentiment import FinBertEncoder, HashEncoder
@@ -120,12 +121,17 @@ def fit_regime(base: Base, use_pca: bool = True) -> Regime:
 
 def assemble(base: Base, regime: Regime) -> Dataset:
     K = regime.post.shape[1]
-    XF = np.hstack([base.table[FEATURES].to_numpy(), regime.post, base.news])
+    XB = np.hstack([base.table[FEATURES].to_numpy(), regime.post, base.news])
     names = FEATURES + [f"regime_{n}" for n in regime.names] + NEWS_FEATURES
+    XF = np.hstack([XB, derive_matrix(XB, derived_index(names))])
+    names = names + DERIVED
+    nb = N_MKT + K + NEWS_DIM
     g = {"market": list(range(N_MKT)),
          "regime": list(range(N_MKT, N_MKT + K)),
          "news": list(range(N_MKT + K, N_MKT + K + NEWS_DIM - 3)),
-         "history": list(range(N_MKT + K + NEWS_DIM - 3, N_MKT + K + NEWS_DIM))}
+         "history": list(range(N_MKT + K + NEWS_DIM - 3, N_MKT + K + NEWS_DIM)),
+         "derived": list(range(nb, nb + 4)),
+         "derived_x": list(range(nb + 4, nb + ND))}
     return Dataset(base, regime, XF, names, g)
 
 
@@ -139,9 +145,9 @@ def prepare(cfg, bars, news, encoder, cache_path=None, use_pca=True) -> Dataset:
 def variant_cols(ds: Dataset, name: str) -> list[int]:
     g = ds.groups
     return {"A": [PRICE_IDX[i] for i in range(len(PRICE_IDX))],
-            "B": g["market"],
-            "C": g["market"] + g["regime"],
-            "D": g["market"] + g["regime"] + g["news"] + g["history"]}[name]
+            "B": g["market"] + g["derived"],
+            "C": g["market"] + g["derived"] + g["regime"],
+            "D": g["market"] + g["regime"] + g["news"] + g["history"] + g["derived"] + g["derived_x"]}[name]
 
 
 @dataclass
@@ -170,7 +176,7 @@ def fit_variant(ds: Dataset, name: str, h: int, cols: list[int] | None = None, k
         m = BaselineLogistic().fit(Xtr, ytr)
         pva, pte = m.predict_proba(Xva), m.predict_proba(Xte)
     else:
-        m = FusionLGBM(cfg["fusion"]["lgbm"], cfg["seed"]).fit(Xtr, ytr, Xva, yva)
+        m = FusionBlend(cfg["fusion"], cfg["seed"]).fit(Xtr, ytr, Xva, yva)
         pva, pte = m.predict_proba(Xva), m.predict_proba(Xte)
     cal = Calibrator(cfg["fusion"]["calibration"]).fit(pva, yva)
     return Fitted(name, h, cols, kind, m, cal, te, pte, cal.transform(pte), pva, cal.transform(pva))

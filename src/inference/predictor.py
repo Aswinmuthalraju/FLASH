@@ -16,6 +16,7 @@ import joblib
 import numpy as np
 
 from src.config import resolve
+from src.features.derived import ND, derive_row, derived_index
 from src.features.market_features import CLASS_NAMES, FEATURES, PRICE_IDX, REGIME_IDX
 from src.features.news_features import NEWS_DIM
 from src.inference.feature_cache import FeatureState, NewsCache
@@ -64,10 +65,13 @@ class Predictor:
             self.K = len(self.regime_names)
             self.filters = [ForwardFilter(h["startprob"], h["transmat"], h["means"], h["covars"]) for _ in self.symbols]
             self.cache = NewsCache(self.symbols, cfg["news"]["decay_tau_min"], cfg["news"]["max_age_min"])
-            self.ncols = N_MKT + self.K + NEWS_DIM
+            self.nbase = N_MKT + self.K + NEWS_DIM
+            self.ncols = self.nbase + ND
+            self.didx = derived_index(self.col_names)
             self.X1 = np.zeros((1, self.ncols))
             self.xf = self.X1[0]
-            self.news_view = self.xf[N_MKT + self.K:]
+            self.news_view = self.xf[N_MKT + self.K:self.nbase]
+            self.derived_view = self.xf[self.nbase:]
             self.ridx = np.array(REGIME_IDX)
             self._tmp = np.empty(len(REGIME_IDX))
             self._z = np.empty(self.P.shape[1])
@@ -76,6 +80,9 @@ class Predictor:
                 assert bundle["D"][hh]["cols"] == list(range(self.ncols)), "D model must use the full column layout"
                 self.boosters[hh] = load_booster(bundle["D"][hh]["model"])
             self.cals = {hh: FastCalibrator(bundle["D"][hh]["cal"]) for hh in self.horizons}
+            self.logit = {hh: bundle["D"][hh].get("logit") for hh in self.horizons}
+            self.logit = {hh: (None if v is None else (np.ascontiguousarray(v["W"]), v["b"], float(v["w"])))
+                          for hh, v in self.logit.items()}
         else:
             self.regime_names = []
             self.W = {hh: np.ascontiguousarray(bundle["A"][hh]["W"]) for hh in self.horizons}
@@ -117,9 +124,16 @@ class Predictor:
             xf[:N_MKT] = st.out
             xf[N_MKT:N_MKT + self.K] = alpha
             self.cache.read(self.symbols[si], tmin, self.news_view)
+            derive_row(xf, self.didx, self.derived_view)
             t4 = _pc()
             for j, hh in enumerate(hs):
                 raw[j] = self.boosters[hh].predict(self.X1, num_threads=1)[0]
+                lg = self.logit[hh]
+                if lg is not None:                                           # blend with the linear leg
+                    z = lg[0] @ xf + lg[1]
+                    z = np.exp(z - z.max())
+                    raw[j] *= 1.0 - lg[2]
+                    raw[j] += (lg[2] / z.sum()) * z
             t5 = _pc()
             regime_post = alpha
         else:
@@ -177,7 +191,8 @@ def make_bundle(ds, finals: dict) -> dict:
          "pca": ds.regime.pca.export(), "hmm": ds.regime.hmm.export(), "D": {}, "A": {}}
     for h in hs:
         fd, fa = finals["D"][h], finals["A"][h]
-        b["D"][h] = {"model": fd.model.model_string(), "cal": fd.calibrator.export(), "cols": fd.cols}
+        b["D"][h] = {"model": fd.model.model_string(), "cal": fd.calibrator.export(), "cols": fd.cols,
+                     "logit": fd.model.export_logit()}
         b["A"][h] = {**fa.model.export(), "cal": fa.calibrator.export()}
     return b
 

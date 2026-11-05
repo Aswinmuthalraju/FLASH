@@ -1,23 +1,23 @@
 | model | stage | mean | median | p95 | p99 | max |
 |---|---|---|---|---|---|---|
-| A  logistic (3 horizons) | features | 26.76 | 25.80 | 28.70 | 52.31 | 199.30 |
-| A  logistic (3 horizons) | model | 10.19 | 9.90 | 10.60 | 16.70 | 106.60 |
-| A  logistic (3 horizons) | calib+gate | 12.59 | 12.10 | 13.30 | 20.50 | 316.70 |
-| A  logistic (3 horizons) | total_stages | 49.64 | 48.00 | 52.70 | 92.31 | 353.40 |
-| A  logistic (3 horizons) | total_incl_call | 51.27 | 49.50 | 54.60 | 97.00 | 366.40 |
-| D  full model (3 horizons) | features | 34.20 | 31.70 | 44.00 | 90.20 | 286.30 |
-| D  full model (3 horizons) | pca | 6.58 | 5.80 | 10.10 | 17.70 | 81.20 |
-| D  full model (3 horizons) | hmm | 12.39 | 10.80 | 19.60 | 38.80 | 254.80 |
-| D  full model (3 horizons) | news | 3.06 | 2.80 | 3.80 | 6.70 | 97.20 |
-| D  full model (3 horizons) | model | 85.10 | 79.10 | 128.61 | 194.00 | 472.20 |
-| D  full model (3 horizons) | calib+gate | 16.91 | 15.40 | 23.20 | 50.20 | 227.30 |
-| D  full model (3 horizons) | total_stages | 158.24 | 146.00 | 243.21 | 338.61 | 741.40 |
-| D  full model (3 horizons) | total_incl_call | 161.39 | 148.90 | 248.80 | 344.60 | 746.60 |
-| D  full model (h=15 only) | features | 55.75 | 55.10 | 102.90 | 170.01 | 661.30 |
-| D  full model (h=15 only) | pca | 10.78 | 10.00 | 21.70 | 41.80 | 295.20 |
-| D  full model (h=15 only) | hmm | 20.52 | 18.70 | 43.20 | 82.20 | 398.20 |
-| D  full model (h=15 only) | news | 5.15 | 4.90 | 8.00 | 15.50 | 968.50 |
-| D  full model (h=15 only) | model | 57.64 | 53.20 | 125.90 | 190.11 | 1011.00 |
-| D  full model (h=15 only) | calib+gate | 12.58 | 11.80 | 25.20 | 49.30 | 223.30 |
-| D  full model (h=15 only) | total_stages | 162.43 | 156.25 | 331.62 | 474.91 | 1217.90 |
-| D  full model (h=15 only) | total_incl_call | 167.45 | 161.10 | 342.30 | 488.32 | 1224.70 |
+| A  logistic (3 horizons) | features | 54.49 | 49.20 | 78.60 | 168.91 | 365.30 |
+| A  logistic (3 horizons) | model | 20.32 | 18.60 | 26.50 | 64.40 | 366.70 |
+| A  logistic (3 horizons) | calib+gate | 14.09 | 12.80 | 18.60 | 49.00 | 246.00 |
+| A  logistic (3 horizons) | total_stages | 89.12 | 80.80 | 142.20 | 244.30 | 478.30 |
+| A  logistic (3 horizons) | total_incl_call | 92.41 | 83.60 | 149.91 | 255.50 | 488.50 |
+| D  full model (3 horizons) | features | 42.54 | 33.10 | 76.60 | 145.20 | 422.80 |
+| D  full model (3 horizons) | pca | 8.70 | 6.70 | 16.50 | 25.80 | 222.70 |
+| D  full model (3 horizons) | hmm | 15.69 | 11.90 | 30.80 | 57.91 | 313.20 |
+| D  full model (3 horizons) | news | 6.46 | 5.10 | 11.00 | 16.80 | 252.10 |
+| D  full model (3 horizons) | model | 172.26 | 133.60 | 313.23 | 525.30 | 958.70 |
+| D  full model (3 horizons) | calib+gate | 11.25 | 8.80 | 19.10 | 34.60 | 386.40 |
+| D  full model (3 horizons) | total_stages | 256.89 | 199.80 | 468.91 | 751.30 | 1486.20 |
+| D  full model (3 horizons) | total_incl_call | 261.13 | 203.10 | 477.41 | 762.11 | 1500.00 |
+| D  full model (h=15 only) | features | 66.51 | 59.00 | 105.50 | 198.20 | 822.90 |
+| D  full model (h=15 only) | pca | 12.83 | 10.60 | 22.20 | 52.10 | 289.90 |
+| D  full model (h=15 only) | hmm | 23.35 | 19.20 | 41.60 | 90.80 | 370.80 |
+| D  full model (h=15 only) | news | 10.20 | 9.20 | 13.60 | 28.51 | 145.50 |
+| D  full model (h=15 only) | model | 95.95 | 82.70 | 175.20 | 263.31 | 522.20 |
+| D  full model (h=15 only) | calib+gate | 8.07 | 6.90 | 12.60 | 26.91 | 506.90 |
+| D  full model (h=15 only) | total_stages | 216.91 | 188.50 | 391.60 | 541.40 | 1059.50 |
+| D  full model (h=15 only) | total_incl_call | 222.76 | 193.70 | 400.39 | 551.10 | 1066.70 |

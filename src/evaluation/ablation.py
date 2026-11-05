@@ -9,7 +9,9 @@ from src.evaluation.experiments import Dataset, assemble, fit_regime, fit_varian
 def run_ablation(ds: Dataset, h: int) -> pd.DataFrame:
     g = ds.groups
     full = variant_cols(ds, "D")
-    drop = lambda *groups: [c for c in full if not any(c in g[x] for x in groups)]  # noqa: E731
+    def drop(*groups):
+        gs = set(groups) | ({"derived_x"} if set(groups) & {"news", "history", "regime"} else set())
+        return [c for c in full if not any(c in g[x] for x in gs)]
     rows = []
 
     def add(label, f, d):

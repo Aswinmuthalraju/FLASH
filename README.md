@@ -42,7 +42,7 @@ flowchart LR
     C -. read + decay .-> X
     FS --> X["[market | regime | news | history]"]
     HM --> X
-    X --> L["LightGBM x3 horizons\n(single row)"] --> CAL["isotonic calibration"] --> G{"max p >= gate?"}
+    X --> L["LightGBM x3 horizons\n(single row)"] --> CAL["temperature scaling"] --> G{"max p >= gate?"}
     G -- yes --> O1[UP / NEUTRAL / DOWN]
     G -- no --> O2[NO STRONG SIGNAL]
   end
@@ -58,7 +58,7 @@ Offline: Viterbi decoding is used **only** for regime plots/analysis (`scripts/e
 | 2 | Linear models / MLE | `models/baseline_logistic.py` | multinomial L2 logistic regression - **baseline only** (experiment A, and the latency comparison). |
 | 3 | Unsupervised | `models/regime_pca_gmm.py` | PCA compresses the slow market features before the HMM; components chosen **on validation** (smallest n explaining ≥ 90 % of validation variance: 3 here); a **GMM fitted with EM** initialises the HMM means/covariances. |
 | 4 | Sequential | `models/hmm_regime.py` | hmmlearn `GaussianHMM` (4 states). Live: one incremental NumPy **forward step with a scaling factor** (`ForwardFilter.step`) gives `P(stateₜ ∣ obs₁..ₜ)`. Verified against an independent log-space forward pass and against hmmlearn's `score` (the scaling factors reproduce the exact evidence). Viterbi: offline only. |
-| 5 | Ensemble | `models/fusion_lgbm.py` | LightGBM multiclass fusion of market features + HMM posteriors + cached news + historical-event impact; isotonic (or Platt) calibration on the validation set. One model per horizon. |
+| 5 | Ensemble | `models/fusion_lgbm.py` | LightGBM (small trees, early-stopped) blended 75/25 with an L2 logistic leg over market + derived (vol-normalised, news x regime) features, HMM posteriors, cached news and historical-event impact; temperature-scaling calibration on the validation set (isotonic overfit). Recipe found with the autoresearch loop in `autoresearch/`. One model per horizon. |
 
 ## Data, labels, splits
 

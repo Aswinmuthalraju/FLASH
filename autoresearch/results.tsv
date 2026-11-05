@@ -1,0 +1,10 @@
+id	val_logloss	mean_auc	status	description
+0	1.061320	0.587727	keep	baseline LGBM variant D
+1	1.04130	0.5879	discard	isotonic -> none (logloss only)
+2	1.04786	0.5970	keep	small trees (7 leaves, mcs300, lambda10, lr .02)
+3	1.03248	0.5970	keep	same + lr .03 early-stop 50, temperature scaling
+4	1.03053	0.6002	keep	engineered features (xs ranks, ret/vol, news x regime)
+5	1.02862	0.6015	keep	+25% logistic blend (BEST)
+6	1.02917	0.6001	discard	5-seed bagging (no gain)
+7	1.06826	0.5543	discard	MLP
+8	1.03302	0.5932	discard	LGBM+MLP blend
