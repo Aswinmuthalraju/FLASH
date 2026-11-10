@@ -35,3 +35,30 @@ Thumbs.db
 autoresearch/.cache_ds.joblib
 autoresearch/sweep*.py
 autoresearch/__pycache__/
+
+# Real-data pipeline: third-party data must not be committed/redistributed
+data/raw/hf/*
+!data/raw/hf/MANIFEST.json
+data/interim/
+data/raw/hf_mock/
+data/raw/market*/
+data/raw/news*.csv
+data/processed_real/
+data/processed_smoke/
+data/flash_real.duckdb
+data/flash_smoke.duckdb
+models_real/
+models_smoke/
+reports/smoke/
+
+# Live RSS output (src/data/rss_collector.py); news*.csv does not match it
+data/raw/rss_news.csv
+# Default real-data report path (scripts/evaluate.py would write test-set results here)
+reports/real/
+# Secrets / local env
+.env.*
+*.pem
+*.key
+# Misc temp
+*.tmp
+.ipynb_checkpoints/

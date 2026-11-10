@@ -1,0 +1,6 @@
+*.sh text eol=lf
+# Keep recorded artefacts byte-exact so their documented SHA-256 hashes verify after any clone
+reports/data_prep/** -text
+*.npz   binary
+*.joblib binary
+*.parquet binary
