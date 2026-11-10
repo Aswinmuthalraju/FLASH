@@ -1,0 +1,807 @@
+{
+  "stage": "D5 validation-only evaluation",
+  "started_utc": "2026-11-09T16:40:14+00:00",
+  "driver": "reports/data_prep/stage_d5_validation_evaluation/d5_validation_evaluation.py",
+  "versions": {
+    "python": "3.11.18",
+    "lightgbm": "4.7.0",
+    "sklearn": "1.9.1",
+    "numpy": "2.4.6"
+  },
+  "bootstrap": {
+    "B": 1000,
+    "seed": 0,
+    "alpha": 0.05,
+    "block": "trading day"
+  },
+  "data_scope": "prepare() processes the FULL chronological dataset in memory incl. test-period rows; ONLY validation rows are predicted/scored; train rows only inside Baselines.fit (D3 procedure); no test rows predicted, calibrated or scored",
+  "probabilities": "UNCALIBRATED (D4 identity calibrator); no calibration, threshold or gate tuning",
+  "validation_bias": "validation already used for PCA n_components, LightGBM early stopping (D) and D3; results are NOT an independent generalisation estimate",
+  "gates": {
+    "G2_d4_artifacts": {
+      "models_real/stage_d4/bundle.joblib": {
+        "expected": "fd91c20e5823d20c469a3424249cee196912fa4ef2b5314c86936a9e077ad37a",
+        "actual": "fd91c20e5823d20c469a3424249cee196912fa4ef2b5314c86936a9e077ad37a",
+        "ok": true
+      },
+      "models_real/stage_d4/event_memory.npz": {
+        "expected": "9f2d2e397b428450d462247db5a1680eac8bdd4da502051ecb90f3b7e000f552",
+        "actual": "9f2d2e397b428450d462247db5a1680eac8bdd4da502051ecb90f3b7e000f552",
+        "ok": true
+      },
+      "models_real/stage_d4/lgbm_D_h5.txt": {
+        "expected": "57418265c0ee1fa2d9f0979104e84d40db1eefde23f3f2fc3ac63b963b9b43bf",
+        "actual": "57418265c0ee1fa2d9f0979104e84d40db1eefde23f3f2fc3ac63b963b9b43bf",
+        "ok": true
+      },
+      "models_real/stage_d4/lgbm_D_h15.txt": {
+        "expected": "d286dc409d5f5bf068ac5008d634a5fefe65718867e77ae5ffbabcac2f82681a",
+        "actual": "d286dc409d5f5bf068ac5008d634a5fefe65718867e77ae5ffbabcac2f82681a",
+        "ok": true
+      },
+      "models_real/stage_d4/lgbm_D_h30.txt": {
+        "expected": "9d0cacd93472894a7e60efcf56a3f63af00358473a44ee20d17394b0183b16ea",
+        "actual": "9d0cacd93472894a7e60efcf56a3f63af00358473a44ee20d17394b0183b16ea",
+        "ok": true
+      }
+    },
+    "G3_bundle": {
+      "horizons": true,
+      "cfg_equal_real_yaml": true,
+      "n_cols_42": true,
+      "h5": {
+        "D_cols_full_range": true,
+        "D_feature_names_match_d4": true,
+        "D_model_equals_txt_file": true,
+        "D_booster_iterations": 174,
+        "D_best_iteration_d4": 174,
+        "D_iterations_match": true,
+        "D_booster_num_feature_42": true,
+        "D_logit_W_shape": [
+          3,
+          42
+        ],
+        "D_logit_b_shape": [
+          3
+        ],
+        "D_logit_w": 0.25,
+        "D_logit_w_is_cfg": true,
+        "A_W_shape": [
+          3,
+          8
+        ],
+        "A_b_shape": [
+          3
+        ],
+        "cal_identity": true,
+        "A_n_features_d4": 8,
+        "ok": true
+      },
+      "h15": {
+        "D_cols_full_range": true,
+        "D_feature_names_match_d4": true,
+        "D_model_equals_txt_file": true,
+        "D_booster_iterations": 121,
+        "D_best_iteration_d4": 121,
+        "D_iterations_match": true,
+        "D_booster_num_feature_42": true,
+        "D_logit_W_shape": [
+          3,
+          42
+        ],
+        "D_logit_b_shape": [
+          3
+        ],
+        "D_logit_w": 0.25,
+        "D_logit_w_is_cfg": true,
+        "A_W_shape": [
+          3,
+          8
+        ],
+        "A_b_shape": [
+          3
+        ],
+        "cal_identity": true,
+        "A_n_features_d4": 8,
+        "ok": true
+      },
+      "h30": {
+        "D_cols_full_range": true,
+        "D_feature_names_match_d4": true,
+        "D_model_equals_txt_file": true,
+        "D_booster_iterations": 107,
+        "D_best_iteration_d4": 107,
+        "D_iterations_match": true,
+        "D_booster_num_feature_42": true,
+        "D_logit_W_shape": [
+          3,
+          42
+        ],
+        "D_logit_b_shape": [
+          3
+        ],
+        "D_logit_w": 0.25,
+        "D_logit_w_is_cfg": true,
+        "A_W_shape": [
+          3,
+          8
+        ],
+        "A_b_shape": [
+          3
+        ],
+        "cal_identity": true,
+        "A_n_features_d4": 8,
+        "ok": true
+      }
+    },
+    "G4_regime_reproducibility": {
+      "col_names_equal": true,
+      "groups_equal": true,
+      "hmm_names_equal": true,
+      "pca_mean": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "pca_scale": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "pca_P": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "pca_c": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "pca_clip_equal": true,
+      "hmm_startprob": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "hmm_transmat": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "hmm_means": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "hmm_covars": {
+        "shape_equal": true,
+        "allclose": true,
+        "max_abs_diff": 0.0
+      },
+      "tolerance": {
+        "rtol": 1e-09,
+        "atol": 1e-12
+      }
+    },
+    "G5_val_rows": {
+      "5": {
+        "n": 91800,
+        "expected_n": 91800,
+        "support": [
+          17581,
+          56517,
+          17702
+        ],
+        "expected_support": [
+          17581,
+          56517,
+          17702
+        ],
+        "all_split_val": true,
+        "all_valid_x": true,
+        "all_labels_ge0": true,
+        "day_range": [
+          82,
+          108
+        ],
+        "val_day_range": [
+          82,
+          108
+        ],
+        "n_days": 27,
+        "sorted_unique_indices": true
+      },
+      "15": {
+        "n": 89100,
+        "expected_n": 89100,
+        "support": [
+          19697,
+          49554,
+          19849
+        ],
+        "expected_support": [
+          19697,
+          49554,
+          19849
+        ],
+        "all_split_val": true,
+        "all_valid_x": true,
+        "all_labels_ge0": true,
+        "day_range": [
+          82,
+          108
+        ],
+        "val_day_range": [
+          82,
+          108
+        ],
+        "n_days": 27,
+        "sorted_unique_indices": true
+      },
+      "30": {
+        "n": 85050,
+        "expected_n": 85050,
+        "support": [
+          20006,
+          45035,
+          20009
+        ],
+        "expected_support": [
+          20006,
+          45035,
+          20009
+        ],
+        "all_split_val": true,
+        "all_valid_x": true,
+        "all_labels_ge0": true,
+        "day_range": [
+          82,
+          108
+        ],
+        "val_day_range": [
+          82,
+          108
+        ],
+        "n_days": 27,
+        "sorted_unique_indices": true
+      }
+    },
+    "G6_finiteness_and_probabilities": {
+      "5": {
+        "finiteness": {
+          "A_features": {
+            "rows_with_nonfinite": 0,
+            "features_with_nonfinite": {}
+          },
+          "D_features": {
+            "rows_with_nonfinite": 0,
+            "features_with_nonfinite": {}
+          }
+        },
+        "P_A": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_lgbm": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_logit": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_D": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 3.3306690738754696e-16,
+          "valid": true
+        },
+        "P_majority": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        },
+        "P_prior": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        },
+        "P_momentum": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        }
+      },
+      "15": {
+        "finiteness": {
+          "A_features": {
+            "rows_with_nonfinite": 0,
+            "features_with_nonfinite": {}
+          },
+          "D_features": {
+            "rows_with_nonfinite": 0,
+            "features_with_nonfinite": {}
+          }
+        },
+        "P_A": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_lgbm": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_logit": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_D": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_majority": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        },
+        "P_prior": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        },
+        "P_momentum": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 1.1102230246251565e-16,
+          "valid": true
+        }
+      },
+      "30": {
+        "finiteness": {
+          "A_features": {
+            "rows_with_nonfinite": 0,
+            "features_with_nonfinite": {}
+          },
+          "D_features": {
+            "rows_with_nonfinite": 0,
+            "features_with_nonfinite": {}
+          }
+        },
+        "P_A": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_lgbm": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_logit": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_D": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 2.220446049250313e-16,
+          "valid": true
+        },
+        "P_majority": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        },
+        "P_prior": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        },
+        "P_momentum": {
+          "shape_ok": true,
+          "nan_rows": 0,
+          "inf_rows": 0,
+          "negative_rows": 0,
+          "gt1_rows": 0,
+          "bad_sum_rows(|sum-1|>1e-6)": 0,
+          "max_abs_sum_err": 0.0,
+          "valid": true
+        }
+      }
+    },
+    "G7_d3_reproduction": {
+      "5": {
+        "majority": {
+          "baseline": "majority",
+          "h": 5,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "prior": {
+          "baseline": "prior",
+          "h": 5,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "momentum": {
+          "baseline": "momentum",
+          "h": 5,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "fit_on_train_equal": true
+      },
+      "15": {
+        "majority": {
+          "baseline": "majority",
+          "h": 15,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "prior": {
+          "baseline": "prior",
+          "h": 15,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "momentum": {
+          "baseline": "momentum",
+          "h": 15,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "fit_on_train_equal": true
+      },
+      "30": {
+        "majority": {
+          "baseline": "majority",
+          "h": 30,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "prior": {
+          "baseline": "prior",
+          "h": 30,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "momentum": {
+          "baseline": "momentum",
+          "h": 30,
+          "abs_diffs": {
+            "n": 0.0,
+            "macro_f1": 0.0,
+            "auc_ovr": 0.0,
+            "brier": 0.0,
+            "ece": 0.0,
+            "accuracy": 0.0,
+            "log_loss": 0.0
+          },
+          "per_class_ok": true,
+          "confusion_ok": true,
+          "reliability_ok": true,
+          "ok": true
+        },
+        "fit_on_train_equal": true
+      }
+    },
+    "G8_streaming_crosscheck": {
+      "day_idx": 82,
+      "date": "2024-10-15",
+      "bars_replayed": 3750,
+      "events_available": 5544,
+      "thresholds": {
+        "D": {
+          "median_max": 1e-09,
+          "frac_gt_1e6_max": 0.002,
+          "coverage_min": 0.9
+        },
+        "A": {
+          "max_abs": 1e-08,
+          "coverage_min": 0.9
+        }
+      },
+      "A": {
+        "predictions_emitted": 3450,
+        "h5": {
+          "batch_rows_that_day": 3400,
+          "compared": 3400,
+          "coverage": 1.0,
+          "max_err": 2.220446049250313e-16,
+          "median_err": 2.7755575615628914e-17,
+          "frac_err_gt_1e-6": 0.0,
+          "live_nonfinite_rows": 0,
+          "ok": true
+        },
+        "h15": {
+          "batch_rows_that_day": 3300,
+          "compared": 3300,
+          "coverage": 1.0,
+          "max_err": 2.220446049250313e-16,
+          "median_err": 2.7755575615628914e-17,
+          "frac_err_gt_1e-6": 0.0,
+          "live_nonfinite_rows": 0,
+          "ok": true
+        },
+        "h30": {
+          "batch_rows_that_day": 3150,
+          "compared": 3150,
+          "coverage": 1.0,
+          "max_err": 2.220446049250313e-16,
+          "median_err": 5.551115123125783e-17,
+          "frac_err_gt_1e-6": 0.0,
+          "live_nonfinite_rows": 0,
+          "ok": true
+        }
+      },
+      "D": {
+        "predictions_emitted": 3450,
+        "h5": {
+          "batch_rows_that_day": 3400,
+          "compared": 3400,
+          "coverage": 1.0,
+          "max_err": 3.3306690738754696e-16,
+          "median_err": 2.7755575615628914e-17,
+          "frac_err_gt_1e-6": 0.0,
+          "live_nonfinite_rows": 0,
+          "ok": true
+        },
+        "h15": {
+          "batch_rows_that_day": 3300,
+          "compared": 3300,
+          "coverage": 1.0,
+          "max_err": 2.220446049250313e-16,
+          "median_err": 2.7755575615628914e-17,
+          "frac_err_gt_1e-6": 0.0,
+          "live_nonfinite_rows": 0,
+          "ok": true
+        },
+        "h30": {
+          "batch_rows_that_day": 3150,
+          "compared": 3150,
+          "coverage": 1.0,
+          "max_err": 2.220446049250313e-16,
+          "median_err": 2.7755575615628914e-17,
+          "frac_err_gt_1e-6": 0.0,
+          "live_nonfinite_rows": 0,
+          "ok": true
+        }
+      },
+      "ok": true
+    },
+    "G2_d4_artifacts_after": {
+      "models_real/stage_d4/bundle.joblib": {
+        "expected": "fd91c20e5823d20c469a3424249cee196912fa4ef2b5314c86936a9e077ad37a",
+        "actual": "fd91c20e5823d20c469a3424249cee196912fa4ef2b5314c86936a9e077ad37a",
+        "ok": true
+      },
+      "models_real/stage_d4/event_memory.npz": {
+        "expected": "9f2d2e397b428450d462247db5a1680eac8bdd4da502051ecb90f3b7e000f552",
+        "actual": "9f2d2e397b428450d462247db5a1680eac8bdd4da502051ecb90f3b7e000f552",
+        "ok": true
+      },
+      "models_real/stage_d4/lgbm_D_h5.txt": {
+        "expected": "57418265c0ee1fa2d9f0979104e84d40db1eefde23f3f2fc3ac63b963b9b43bf",
+        "actual": "57418265c0ee1fa2d9f0979104e84d40db1eefde23f3f2fc3ac63b963b9b43bf",
+        "ok": true
+      },
+      "models_real/stage_d4/lgbm_D_h15.txt": {
+        "expected": "d286dc409d5f5bf068ac5008d634a5fefe65718867e77ae5ffbabcac2f82681a",
+        "actual": "d286dc409d5f5bf068ac5008d634a5fefe65718867e77ae5ffbabcac2f82681a",
+        "ok": true
+      },
+      "models_real/stage_d4/lgbm_D_h30.txt": {
+        "expected": "9d0cacd93472894a7e60efcf56a3f63af00358473a44ee20d17394b0183b16ea",
+        "actual": "9d0cacd93472894a7e60efcf56a3f63af00358473a44ee20d17394b0183b16ea",
+        "ok": true
+      }
+    }
+  },
+  "inputs": {
+    "d3_json_sha256": "f74ad79fe949f6b99d13685e1c0ba2a942c135f81b394de3f050406c50eb12e5",
+    "d4_metadata_sha256": "d14eddf89bdc0e0a3850616358361991f7f08e200269519447c8c1a400c9ba3d"
+  },
+  "finbert_cache_sha256": "43447937a34ba869603ca6552e222d31d2da35e26af8eba634c943e3a89f1373",
+  "split_days": {
+    "train": 82,
+    "val": 27
+  },
+  "warnings": [],
+  "finbert_cache_unchanged_end": true,
+  "total_seconds": 7024.2,
+  "status": "complete"
+}

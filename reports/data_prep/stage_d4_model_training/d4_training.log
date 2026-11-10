@@ -1,0 +1,18 @@
+[2026-11-09T21:34:53] config configs\real.yaml  seed=7  horizons=[5, 15, 30]
+[2026-11-09T21:34:58] data: 510,000 bars, 10 symbols, 29,123 headlines
+[2026-11-09T21:37:17] prepare(): 144s  XF (510000, 42)  PCA 4 comps (val explained var 0.915)  HMM states ['calm', 'bull', 'volatile', 'bear']
+[2026-11-09T21:37:17] h= 5 A: n_train=278,800 feats=8 n_iter=[13] 0.4s
+[2026-11-09T21:37:17] WARNING LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)
+[2026-11-09T21:37:30] h= 5 D: n_train=278,800 n_val(ES)=91,800 feats=42 best_iter=174 12.8s
+[2026-11-09T21:37:30] h=15 A: n_train=270,600 feats=8 n_iter=[15] 0.4s
+[2026-11-09T21:37:31] WARNING LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)
+[2026-11-09T21:37:37] h=15 D: n_train=270,600 n_val(ES)=89,100 feats=42 best_iter=121 6.4s
+[2026-11-09T21:37:37] h=30 A: n_train=258,300 feats=8 n_iter=[14] 0.4s
+[2026-11-09T21:37:37] WARNING LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)
+[2026-11-09T21:37:44] h=30 D: n_train=258,300 n_val(ES)=85,050 feats=42 best_iter=107 6.9s
+[2026-11-09T21:37:45] wrote models_real/stage_d4/bundle.joblib  1,152,594 B  fd91c20e5823d20c469a3424249cee196912fa4ef2b5314c86936a9e077ad37a
+[2026-11-09T21:37:45] wrote models_real/stage_d4/event_memory.npz  24,466,970 B  9f2d2e397b428450d462247db5a1680eac8bdd4da502051ecb90f3b7e000f552
+[2026-11-09T21:37:45] wrote models_real/stage_d4/lgbm_D_h5.txt  503,793 B  57418265c0ee1fa2d9f0979104e84d40db1eefde23f3f2fc3ac63b963b9b43bf
+[2026-11-09T21:37:45] wrote models_real/stage_d4/lgbm_D_h15.txt  351,419 B  d286dc409d5f5bf068ac5008d634a5fefe65718867e77ae5ffbabcac2f82681a
+[2026-11-09T21:37:45] wrote models_real/stage_d4/lgbm_D_h30.txt  311,710 B  9d0cacd93472894a7e60efcf56a3f63af00358473a44ee20d17394b0183b16ea
+[2026-11-09T21:37:45] done in 172s  warnings=3

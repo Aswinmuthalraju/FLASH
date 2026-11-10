@@ -1,0 +1,69 @@
+{
+  "L1_splits": {
+    "pass": true,
+    "days_per_split": {
+      "train": 82,
+      "val": 27,
+      "test": 27
+    },
+    "split_dates": {
+      "train": [
+        "2024-06-18",
+        "2024-10-14"
+      ],
+      "val": [
+        "2024-10-15",
+        "2024-11-25"
+      ],
+      "test": [
+        "2024-11-26",
+        "2025-01-02"
+      ]
+    },
+    "whole_days": true,
+    "chronological": true
+  },
+  "L2_purge": {
+    "pass": true,
+    "h5_label_windows_crossing_session": 0,
+    "h15_label_windows_crossing_session": 0,
+    "h30_label_windows_crossing_session": 0,
+    "note": "labels end at the session close, splits are whole days -> structural purge, no extra gap needed"
+  },
+  "L3_labels": {
+    "pass": true,
+    "labels_checked": 9000,
+    "mismatches": 0
+  },
+  "L4_feature_causality": {
+    "pass": true,
+    "rows_checked": 300,
+    "max_abs_diff_prefix_vs_full": 0.0,
+    "note": "mret (equal-weight universe return) is contemporaneous across symbols at the same minute: known at the bar close, not look-ahead"
+  },
+  "L5_backfill_lookahead": {
+    "pass": true,
+    "valid_rows_with_future_backfilled_price": 0,
+    "symbol_days_affected": [],
+    "n_symbol_days_affected": 0,
+    "assumes": "real trades have volume > 0 (true for NSE 1-min bars)"
+  },
+  "L6_news_strictly_before_bar": {
+    "pass": true,
+    "bar_rows_with_news": 411331,
+    "violations": 0,
+    "events_linked": 10854
+  },
+  "L7_event_memory_split_boundaries": {
+    "pass": true,
+    "events_before_val_changed_max_abs": 0.0,
+    "events_before_test_changed_max_abs": 0.0
+  },
+  "L8_regime_fit_train_only": {
+    "pass": true,
+    "pca_components_identical": true,
+    "train_posteriors_max_abs_diff_after_corrupting_test": 0.0,
+    "note": "val IS used (PCA component count, early stopping, calibration) by design; val metrics are therefore optimistic, test is untouched"
+  },
+  "all_pass": true
+}

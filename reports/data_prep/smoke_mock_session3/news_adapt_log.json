@@ -1,0 +1,24 @@
+{
+  "rows_in": 700,
+  "timestamp_layouts": {
+    "datetime": 572,
+    "date_in_time_col": 97,
+    "no_date": 31
+  },
+  "undated_set_aside": 31,
+  "dropped_empty_headline": 0,
+  "sections": {
+    "business": 611,
+    "technology": 21,
+    "entertainment": 19,
+    "india": 18
+  },
+  "dropped_excluded_sections": 19,
+  "dropped_duplicates": 15,
+  "rows_out": 635,
+  "date_range": [
+    "2024-01-01 08:21:00",
+    "2024-01-26 22:40:00"
+  ],
+  "distinct_dates": 20
+}

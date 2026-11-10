@@ -1,0 +1,321 @@
+{
+  "raw_market": {
+    "rows": 510000,
+    "duplicate_symbol_ts": 0,
+    "missing_values": {
+      "timestamp": 0,
+      "symbol": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "ohlc_violations": 3,
+    "nonpositive_prices": 0,
+    "rows_outside_session": 0,
+    "day_coverage": {
+      "mean": 1.0,
+      "min": 1.0,
+      "days_below_min_coverage": 0
+    },
+    "per_symbol_days": {
+      "BHARTIARTL": 136,
+      "HDFCBANK": 136,
+      "HINDUNILVR": 136,
+      "ICICIBANK": 136,
+      "INFY": 136,
+      "ITC": 136,
+      "KOTAKBANK": 136,
+      "RELIANCE": 136,
+      "SBIN": 136,
+      "TCS": 136
+    },
+    "per_symbol": {
+      "BHARTIARTL": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 3.9215686274509805e-05
+      },
+      "HDFCBANK": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 1.9607843137254903e-05
+      },
+      "HINDUNILVR": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 3.9215686274509805e-05
+      },
+      "ICICIBANK": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 1.9607843137254903e-05
+      },
+      "INFY": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 1.9607843137254903e-05
+      },
+      "ITC": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 3.9215686274509805e-05
+      },
+      "KOTAKBANK": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 1.9607843137254903e-05
+      },
+      "RELIANCE": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 7.843137254901961e-05
+      },
+      "SBIN": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 7.843137254901961e-05
+      },
+      "TCS": {
+        "records_in_session": 51000,
+        "trading_days": 136,
+        "first_day": "2024-06-18",
+        "last_day": "2025-01-02",
+        "missing_minutes_frac": 0.0,
+        "zero_volume_frac": 7.843137254901961e-05
+      }
+    },
+    "timestamp_tz_as_loaded": "Asia/Kolkata",
+    "chronological_within_symbol": true
+  },
+  "bars_after_flash_loader": {
+    "rows": 510000,
+    "symbols": 10,
+    "trading_days": 136,
+    "first": "2024-06-18 09:15:00+05:30",
+    "last": "2025-01-02 15:29:00+05:30",
+    "zero_volume_bars_frac": 4.313725490196078e-05,
+    "return_outliers_gt10sd": 278,
+    "max_abs_1min_return": 0.03103213839536798
+  },
+  "news": {
+    "rows": 29123,
+    "rows_in_market_window": 29113,
+    "date_range": [
+      "2024-06-16 15:42:00+05:30",
+      "2025-01-02 15:48:00+05:30"
+    ],
+    "coverage": {
+      "market_trading_days": 136,
+      "trading_days_with_any_article": 136,
+      "trading_days_with_flash_usable_article": 127,
+      "articles_per_trading_day_median": 195.5,
+      "longest_run_of_trading_days_without_articles": 0
+    },
+    "encoding_language": {
+      "non_ascii_rows": 627,
+      "low_latin_letter_ratio_rows(<0.5)": 0,
+      "empty_headlines": 0
+    },
+    "categories": {
+      "business": 17766,
+      "india": 5197,
+      "world": 2692,
+      "technology": 2333,
+      "opinion": 520,
+      "elections": 120,
+      "news": 119,
+      "automobile": 71,
+      "banking": 68,
+      "trends": 61,
+      "economy": 30,
+      "sports": 25,
+      "currency": 23,
+      "politics": 21,
+      "telecom": 16,
+      "podcast": 15,
+      "us-presidential-elections": 10,
+      "budget": 9,
+      "travel": 7,
+      "explainers": 6,
+      "mc-buzz": 3,
+      "science": 3,
+      "space": 3,
+      "environment": 1,
+      "books": 1,
+      "iims": 1,
+      "brand-connect": 1,
+      "education": 1
+    },
+    "used_by_flash_frac": 0.05987016109641741,
+    "stock_specific": 716,
+    "market_wide_broadcast": 1009,
+    "stock_specific_per_symbol": {
+      "RELIANCE": 144,
+      "SBIN": 122,
+      "INFY": 95,
+      "KOTAKBANK": 92,
+      "HDFCBANK": 76,
+      "TCS": 70,
+      "BHARTIARTL": 57,
+      "ICICIBANK": 38,
+      "ITC": 35,
+      "HINDUNILVR": 35
+    },
+    "event_types_of_used": {
+      "RBI/Rates": 596,
+      "Other": 525,
+      "Geopolitical": 431,
+      "Earnings": 73,
+      "M&A": 42,
+      "Management": 37,
+      "Regulation": 30,
+      "Legal/Fraud": 9
+    },
+    "residual_mojibake_rows": 0,
+    "duplicate_ts_headline": 0,
+    "in_session_frac": 0.5543915089478927
+  },
+  "pipeline": {
+    "feature_matrix_shape": [
+      510000,
+      42
+    ],
+    "n_features": 42,
+    "nan_in_valid_rows": 0,
+    "inf_in_valid_rows": 0,
+    "labelled_rows_per_horizon": {
+      "5": 462400,
+      "15": 448800,
+      "30": 428400
+    },
+    "per_symbol_valid_labelled_h15": {
+      "BHARTIARTL": 44880,
+      "HDFCBANK": 44880,
+      "HINDUNILVR": 44880,
+      "ICICIBANK": 44880,
+      "INFY": 44880,
+      "ITC": 44880,
+      "KOTAKBANK": 44880,
+      "RELIANCE": 44880,
+      "SBIN": 44880,
+      "TCS": 44880
+    },
+    "pca_components": 4,
+    "hmm_states": [
+      "calm",
+      "bull",
+      "volatile",
+      "bear"
+    ],
+    "splits": {
+      "h5_train": {
+        "n": 278800,
+        "DOWN": 0.18808106169296987,
+        "NEUTRAL": 0.6248278335724534,
+        "UP": 0.18709110473457677
+      },
+      "h5_val": {
+        "n": 91800,
+        "DOWN": 0.19151416122004358,
+        "NEUTRAL": 0.6156535947712418,
+        "UP": 0.1928322440087146
+      },
+      "h5_test": {
+        "n": 91800,
+        "DOWN": 0.17898692810457517,
+        "NEUTRAL": 0.6359368191721133,
+        "UP": 0.18507625272331155
+      },
+      "h15_train": {
+        "n": 270600,
+        "DOWN": 0.2139578713968958,
+        "NEUTRAL": 0.5732187730968219,
+        "UP": 0.21282335550628234
+      },
+      "h15_val": {
+        "n": 89100,
+        "DOWN": 0.2210662177328844,
+        "NEUTRAL": 0.5561616161616162,
+        "UP": 0.22277216610549944
+      },
+      "h15_test": {
+        "n": 89100,
+        "DOWN": 0.2028843995510662,
+        "NEUTRAL": 0.5861616161616162,
+        "UP": 0.21095398428731763
+      },
+      "h30_train": {
+        "n": 258300,
+        "DOWN": 0.2291637630662021,
+        "NEUTRAL": 0.5419667053813395,
+        "UP": 0.22886953155245837
+      },
+      "h30_val": {
+        "n": 85050,
+        "DOWN": 0.23522633744855967,
+        "NEUTRAL": 0.529512051734274,
+        "UP": 0.23526161081716637
+      },
+      "h30_test": {
+        "n": 85050,
+        "DOWN": 0.21849500293944737,
+        "NEUTRAL": 0.5560493827160494,
+        "UP": 0.22545561434450323
+      }
+    },
+    "split_days": {
+      "test": {
+        "min": 109,
+        "max": 135,
+        "nunique": 27
+      },
+      "train": {
+        "min": 0,
+        "max": 81,
+        "nunique": 82
+      },
+      "val": {
+        "min": 82,
+        "max": 108,
+        "nunique": 27
+      }
+    },
+    "splits_chronological_and_disjoint": true,
+    "test_rows_with_news_<=30min": 24746
+  },
+  "critical_issues": [],
+  "data_paths": {
+    "market": "C:\\Users\\prsan\\Projects\\FLASH\\data\\raw\\market",
+    "news": "C:\\Users\\prsan\\Projects\\FLASH\\data\\raw\\news.csv",
+    "stub_encoder": false
+  }
+}

@@ -1,0 +1,18 @@
+[2026-11-09T22:10:14] G2/G3 passed: D4 artifacts intact, bundle structure matches D4 metadata
+[2026-11-09T22:14:04] prepare(): XF (510000, 42); split day counts {'train': 82, 'val': 27}
+[2026-11-09T22:14:04] G4 passed: refitted PCA/HMM equal the D4 bundle
+[2026-11-09T22:14:05] h=5: G5 rows OK (n=91,800), G6 probabilities valid, G7 D3 baselines reproduced
+[2026-11-09T22:14:06] h=15: G5 rows OK (n=89,100), G6 probabilities valid, G7 D3 baselines reproduced
+[2026-11-09T22:14:07] h=30: G5 rows OK (n=85,050), G6 probabilities valid, G7 D3 baselines reproduced
+[2026-11-09T22:14:16] G8 passed: one-day streaming Predictor matches batch reconstruction
+[2026-11-09T22:14:17] wrote reports\data_prep\stage_d5_validation_evaluation\d5_val_probabilities.npz
+[2026-11-09T22:37:18] h=5 A: brier 0.5382 logloss 0.9198 auc 0.5798 [1382s incl. bootstrap]
+[2026-11-09T22:59:18] h=5 D: brier 0.5356 logloss 0.9162 auc 0.5886 [1320s incl. bootstrap]
+[2026-11-09T23:13:20] h=15 A: brier 0.5807 logloss 0.9786 auc 0.5867 [842s incl. bootstrap]
+[2026-11-09T23:33:38] h=15 D: brier 0.5787 logloss 0.9762 auc 0.5916 [1218s incl. bootstrap]
+[2026-11-09T23:47:59] h=30 A: brier 0.5918 logloss 0.9942 auc 0.6023 [862s incl. bootstrap]
+[2026-11-10T00:07:18] h=30 D: brier 0.5904 logloss 0.9928 auc 0.6018 [1158s incl. bootstrap]
+[2026-11-10T00:07:18] wrote reports/data_prep/stage_d5_validation_evaluation/d5_validation_metrics.json  70,648 B
+[2026-11-10T00:07:18] wrote reports/data_prep/stage_d5_validation_evaluation/d5_run_metadata.json  21,897 B
+[2026-11-10T00:07:18] wrote reports/data_prep/stage_d5_validation_evaluation/d5_val_probabilities.npz  13,601,657 B
+[2026-11-10T00:07:18] done in 7024s  warnings=0
