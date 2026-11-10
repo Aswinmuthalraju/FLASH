@@ -1,0 +1,20 @@
+{
+  "rows_in": 510600,
+  "rows_after_symbol_filter": 510600,
+  "rows_after_date_filter": 510600,
+  "late_open_symbol_days_dropped": [
+    "BHARTIARTL 2024-11-01",
+    "HDFCBANK 2024-11-01",
+    "HINDUNILVR 2024-11-01",
+    "ICICIBANK 2024-11-01",
+    "INFY 2024-11-01",
+    "ITC 2024-11-01",
+    "KOTAKBANK 2024-11-01",
+    "RELIANCE 2024-11-01",
+    "SBIN 2024-11-01",
+    "TCS 2024-11-01"
+  ],
+  "rows_after_late_open_drop": 510000,
+  "symbols_missing": [],
+  "files_written": 10
+}

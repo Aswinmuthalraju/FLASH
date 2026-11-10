@@ -1,0 +1,77 @@
+# Real-data config: identical model settings to config/config.yaml; ONLY paths differ,
+# so real-data runs never overwrite the committed synthetic artefacts (models/, reports/, data/processed/).
+seed: 7
+symbols:
+- RELIANCE
+- TCS
+- HDFCBANK
+- INFY
+- ICICIBANK
+- HINDUNILVR
+- ITC
+- SBIN
+- BHARTIARTL
+- KOTAKBANK
+paths:
+  raw: data/raw
+  processed: data/processed_real
+  duckdb: data/flash_real.duckdb
+  models: models_real
+  reports: reports/real
+market:
+  tz: Asia/Kolkata
+  session_open: 09:15
+  bars_per_day: 375
+  min_day_coverage: 0.5
+synthetic:
+  start: '2024-01-01'
+  n_days: 60
+  news_per_stock_day: 3.0
+  market_news_per_day: 0.7
+split:
+  train: 0.6
+  val: 0.2
+labels:
+  horizons:
+  - 5
+  - 15
+  - 30
+  primary_horizon: 15
+  k: 1.0
+  vol_window: 30
+  scale_sqrt_h: true
+features:
+  w_mid: 20
+  w_long: 30
+news:
+  finbert: ProsusAI/finbert
+  batch_size: 32
+  decay_tau_min: 30.0
+  max_age_min: 240
+  market_wide_relevance: 0.3
+  memory_k: 5
+  impact_horizon: 15
+regime:
+  n_states: 4
+  pca_target_var: 0.9
+  gmm_seed: 7
+fusion:
+  lgbm:
+    n_estimators: 3000
+    learning_rate: 0.03
+    num_leaves: 7
+    min_child_samples: 300
+    reg_lambda: 10
+    subsample: 0.8
+    subsample_freq: 1
+    colsample_bytree: 0.5
+    early_stopping_rounds: 50
+  blend_logit_weight: 0.25
+  logit_C: 0.05
+  calibration: temperature
+inference:
+  gate_threshold: 0.5
+backtest:
+  threshold: 0.55
+  cost_bps_per_side: 3.0
+  entry_delay_bars: 1

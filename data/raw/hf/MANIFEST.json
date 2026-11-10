@@ -1,0 +1,52 @@
+{
+  "LogeshChandran/money_control_news": {
+    "status": "downloaded",
+    "error_type": "ConnectError",
+    "error": "[Errno -2] Name or service not known",
+    "checked_at_utc": "2026-11-09T11:17:51.301008+00:00",
+    "revision_sha": "033afe61ca4b3ebb8879ac9097461f36f99348e1",
+    "last_modified": "2025-01-02 10:25:56+00:00",
+    "license": "mit",
+    "remote_files": {
+      ".gitattributes": 2419,
+      "README.md": 640,
+      "data/train-00000-of-00001.parquet": 44945153
+    },
+    "local_files": {
+      "data\\raw\\hf\\money_control_news.parquet": {
+        "bytes": 44000769,
+        "sha256": "7213bcd4a42d8ea3ab95798461524bb0ca6479085ac1be2afe26e524fd42e65d",
+        "note": "full train split at revision 033afe61ca4b3ebb8879ac9097461f36f99348e1"
+      }
+    }
+  },
+  "xxparthparekhxx/indian-stock-market-minute-data": {
+    "status": "downloaded",
+    "error_type": "ConnectError",
+    "error": "[Errno -2] Name or service not known",
+    "checked_at_utc": "2026-11-09T11:18:53.050098+00:00",
+    "revision_sha": "91fc0616910dc9d92c5e34f8470dd58817529cc8",
+    "last_modified": "2026-01-25 15:44:42+00:00",
+    "license": "mit",
+    "remote_files": {
+      ".gitattributes": 2461,
+      "README.md": 4318,
+      "day/train-00000.parquet": 117731670,
+      "minute/train-00000.parquet": 1446269838,
+      "minute/train-00001.parquet": 1468492209,
+      "minute/train-00002.parquet": 1432730390,
+      "minute/train-00003.parquet": 1405964246,
+      "minute/train-00004.parquet": 1574124848,
+      "minute/train-00005.parquet": 1427834477,
+      "minute/train-00006.parquet": 1443474644,
+      "minute/train-00007.parquet": 193398406
+    },
+    "local_files": {
+      "data\\raw\\hf\\minute_subset.parquet": {
+        "bytes": 7405059,
+        "sha256": "5d55a71e0791f6a3d59205cb767f9f401a3d528edc4dd20a8fc63f21763d3931",
+        "note": "rows for 10 symbols, 2024-06-16..2025-01-02 IST, revision 91fc0616910dc9d92c5e34f8470dd58817529cc8, read from 8 minute shards via predicate push-down"
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "rows_in": 29286,
+  "timestamp_layouts": {
+    "datetime": 24832,
+    "date_in_time_col": 4374,
+    "no_date": 80
+  },
+  "undated_set_aside": 80,
+  "dropped_empty_headline": 1,
+  "sections": {
+    "business": 17776,
+    "india": 5198,
+    "world": 2693,
+    "technology": 2333,
+    "opinion": 520,
+    "elections": 120,
+    "news": 119,
+    "automobile": 71,
+    "entertainment": 70,
+    "banking": 68,
+    "trends": 61,
+    "economy": 30,
+    "sports": 25,
+    "currency": 23,
+    "politics": 21,
+    "telecom": 16,
+    "podcast": 15,
+    "us-presidential-elections": 10,
+    "budget": 9,
+    "travel": 7,
+    "explainers": 6,
+    "science": 3,
+    "space": 3,
+    "mc-buzz": 3,
+    "education": 1,
+    "brand-connect": 1,
+    "iims": 1,
+    "books": 1,
+    "environment": 1
+  },
+  "dropped_excluded_sections": 70,
+  "dropped_duplicates": 12,
+  "rows_out": 29123,
+  "date_range": [
+    "2024-06-16 15:42:00",
+    "2025-01-02 15:48:00"
+  ],
+  "distinct_dates": 197
+}

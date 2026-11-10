@@ -1,0 +1,9 @@
+{
+  "rows_in": 73256,
+  "rows_after_symbol_filter": 72756,
+  "rows_after_date_filter": 72756,
+  "late_open_symbol_days_dropped": [],
+  "rows_after_late_open_drop": 72756,
+  "symbols_missing": [],
+  "files_written": 10
+}

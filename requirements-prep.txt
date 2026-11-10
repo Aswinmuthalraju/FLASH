@@ -1,0 +1,4 @@
+# Extra dependencies for preprocessing/ only (the model/runtime requirements.txt is unchanged)
+huggingface_hub   # HfFileSystem streaming of the minute shards
+datasets          # loading the news dataset
+ftfy              # repairs mojibake in Moneycontrol titles
