@@ -13,13 +13,19 @@ University ML course project: exactly the five models below, no extra models, no
 
 ```bash
 uv venv --python 3.11 .venv && uv pip install --python .venv/Scripts/python.exe -r requirements.txt
-.venv/Scripts/python.exe -m pytest -q                 # 39 tests
+.venv/Scripts/python.exe -m pytest -q                 # 58 tests
 .venv/Scripts/python.exe scripts/train.py             # data -> features -> PCA/GMM/HMM -> news -> LightGBM -> models/bundle.joblib
 .venv/Scripts/python.exe scripts/evaluate.py          # experiments A-D, shock subset, ablation, backtest -> reports/
 .venv/Scripts/python.exe scripts/benchmark.py         # 10k-bar latency benchmark of the real hot loop
 .venv/Scripts/python.exe scripts/demo.py              # console replay around news events
 .venv/Scripts/python.exe -m streamlit run app/streamlit_demo.py
 ```
+
+**macOS / Linux:** replace `.venv/Scripts/python.exe` with `.venv/bin/python`. On macOS, LightGBM also needs OpenMP
+(`brew install libomp`), and `ftfy` (from `requirements-prep.txt`) is needed for `tests/test_preprocessing.py`.
+Last verified run (macOS, Python 3.11): 58 tests pass; `scripts/train.py` takes about 40 s and `scripts/evaluate.py`
+about 2 minutes on the synthetic data.
+
 
 Real data: `python scripts/train.py --market data/raw/prices_dir_or_file --news data/raw/news.csv` (market: CSV/Parquet,
 one file per stock or one file with a `symbol` column; news CSV columns `timestamp, headline, source`). Recent data:
