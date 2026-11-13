@@ -4,8 +4,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PY=${PY:-python}
-START=${START:-2024-06-01}       # news coverage window (confirm against reports/data_prep/news_adapt_log.json)
-END=${END:-2025-01-31}
+START=${START:-2024-06-16}       # D1 window = news coverage 2024-06-16 .. 2025-01-02 (STAGE_D1_REAL_DATA_REPORT.md)
+END=${END:-2025-01-02}
 
 case "${1:-smoke}" in
   smoke)   # offline: mock HF-shaped data, stub encoder - checks plumbing only

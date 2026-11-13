@@ -1,0 +1,27 @@
+[
+  {
+    "path": "models_real/stage_d4_mac/bundle.joblib",
+    "bytes": 1337794,
+    "sha256": "d65fc42a37f6286e4d3253330de64b190b043af8acca3be806b393c65c3cfdb6"
+  },
+  {
+    "path": "models_real/stage_d4_mac/event_memory.npz",
+    "bytes": 24466970,
+    "sha256": "4f0993add4d4e389349c2fb54550df6410e8a5416f5051f3f6999102f8a3742c"
+  },
+  {
+    "path": "models_real/stage_d4_mac/lgbm_D_h5.txt",
+    "bytes": 490737,
+    "sha256": "19eb2511552f9dd4bae604ec96338b776564726788f1ab420d12bbc1fa46169d"
+  },
+  {
+    "path": "models_real/stage_d4_mac/lgbm_D_h15.txt",
+    "bytes": 445691,
+    "sha256": "bc1e2a5c510095c9ccf0553a44344bacd36505ea81d4d9ec38ec58da77e4817f"
+  },
+  {
+    "path": "models_real/stage_d4_mac/lgbm_D_h30.txt",
+    "bytes": 392259,
+    "sha256": "83d6dad4cae0f402ab83c68e75a5235e2e31b8b8efa13df23675d569d6dfd1c8"
+  }
+]

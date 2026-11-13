@@ -1,22 +1,22 @@
 model,stage,mean,median,p95,p99,max
-A  logistic (3 horizons),features,54.49,49.2,78.6,168.91,365.3
-A  logistic (3 horizons),model,20.32,18.6,26.5,64.4,366.7
-A  logistic (3 horizons),calib+gate,14.09,12.8,18.6,49.0,246.0
-A  logistic (3 horizons),total_stages,89.12,80.8,142.2,244.3,478.3
-A  logistic (3 horizons),total_incl_call,92.41,83.6,149.91,255.5,488.5
-D  full model (3 horizons),features,42.54,33.1,76.6,145.2,422.8
-D  full model (3 horizons),pca,8.7,6.7,16.5,25.8,222.7
-D  full model (3 horizons),hmm,15.69,11.9,30.8,57.91,313.2
-D  full model (3 horizons),news,6.46,5.1,11.0,16.8,252.1
-D  full model (3 horizons),model,172.26,133.6,313.23,525.3,958.7
-D  full model (3 horizons),calib+gate,11.25,8.8,19.1,34.6,386.4
-D  full model (3 horizons),total_stages,256.89,199.8,468.91,751.3,1486.2
-D  full model (3 horizons),total_incl_call,261.13,203.1,477.41,762.11,1500.0
-D  full model (h=15 only),features,66.51,59.0,105.5,198.2,822.9
-D  full model (h=15 only),pca,12.83,10.6,22.2,52.1,289.9
-D  full model (h=15 only),hmm,23.35,19.2,41.6,90.8,370.8
-D  full model (h=15 only),news,10.2,9.2,13.6,28.51,145.5
-D  full model (h=15 only),model,95.95,82.7,175.2,263.31,522.2
-D  full model (h=15 only),calib+gate,8.07,6.9,12.6,26.91,506.9
-D  full model (h=15 only),total_stages,216.91,188.5,391.6,541.4,1059.5
-D  full model (h=15 only),total_incl_call,222.76,193.7,400.39,551.1,1066.7
+A  logistic (3 horizons),features,44.82,44.33,47.54,56.75,347.62
+A  logistic (3 horizons),model,16.88,16.75,17.12,18.21,103.17
+A  logistic (3 horizons),calib+gate,11.55,11.46,11.75,12.38,47.75
+A  logistic (3 horizons),total_stages,73.37,72.67,76.25,92.04,467.71
+A  logistic (3 horizons),total_incl_call,75.79,74.96,78.96,97.04,471.12
+D  full model (3 horizons),features,48.59,47.96,51.42,64.21,139.83
+D  full model (3 horizons),pca,6.56,6.46,7.0,8.54,39.83
+D  full model (3 horizons),hmm,14.0,13.83,14.58,17.75,94.46
+D  full model (3 horizons),news,7.13,7.04,7.67,8.58,50.46
+D  full model (3 horizons),model,160.23,158.46,174.38,196.54,3474.5
+D  full model (3 horizons),calib+gate,12.74,12.62,13.12,14.58,72.0
+D  full model (3 horizons),total_stages,249.26,246.62,267.46,299.76,3580.62
+D  full model (3 horizons),total_incl_call,252.94,250.29,271.29,304.55,3591.04
+D  full model (h=15 only),features,47.06,46.42,49.5,63.13,216.25
+D  full model (h=15 only),pca,6.09,5.96,6.5,8.04,45.67
+D  full model (h=15 only),hmm,13.4,13.21,13.96,17.12,76.0
+D  full model (h=15 only),news,6.73,6.62,7.21,8.25,64.75
+D  full model (h=15 only),model,46.09,44.96,54.38,65.58,338.5
+D  full model (h=15 only),calib+gate,4.7,4.62,4.92,5.63,72.62
+D  full model (h=15 only),total_stages,124.08,122.12,135.47,158.54,416.46
+D  full model (h=15 only),total_incl_call,127.43,125.42,139.09,162.67,419.88

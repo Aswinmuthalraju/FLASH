@@ -1,0 +1,597 @@
+{
+  "stage": "D4",
+  "created_utc": "2026-11-12T12:46:37+00:00",
+  "driver": "reports/data_prep/stage_d4_model_training/d4_train_driver.py",
+  "config": "configs/real.yaml",
+  "market": "data/raw/market",
+  "news": "data/raw/news.csv",
+  "seed": 7,
+  "horizons": [
+    5,
+    15,
+    30
+  ],
+  "versions": {
+    "python": "3.11.15",
+    "lightgbm": "4.7.0",
+    "sklearn": "1.9.1",
+    "numpy": "2.4.6"
+  },
+  "data": {
+    "bars": 510000,
+    "symbols": 10,
+    "headlines": 29123,
+    "finbert_cache_sha256": "d8e738823717b731bc0ce1eea675ea7d41b8f032f06881627ba6151ed0c1ac61",
+    "finbert_loaded": false
+  },
+  "regime": {
+    "pca_components": 4,
+    "pca_val_explained_var": 0.9151402698874092,
+    "pca_note": "existing RegimePCA selects n_components using the VAL split (known D2 caveat L8)",
+    "hmm_states": [
+      "calm",
+      "bull",
+      "volatile",
+      "bear"
+    ],
+    "hmm_fit": "train rows only (existing fit_regime)"
+  },
+  "feature_count_total": 42,
+  "test_split": "never selected, predicted or scored by this driver",
+  "data_scope": "prepare() processes the FULL chronological dataset in memory (features, labels, HMM forward filtering, event forward returns), INCLUDING test-period rows; predictive model fitting uses TRAIN rows only; VAL rows are used only for LightGBM early stopping and the existing RegimePCA n_components selection; NO test rows are used for model fitting, prediction, calibration or scoring",
+  "calibration": "NOT fitted in D4; bundle carries identity calibrator (temperature T=1.0)",
+  "prepare_seconds": 73.7,
+  "models": {
+    "A": {
+      "5": {
+        "kind": "L2 multinomial logistic regression (BaselineLogistic, StandardScaler fit on train)",
+        "n_train": 278800,
+        "n_val_used": 0,
+        "n_features": 8,
+        "features": [
+          "ret1",
+          "ret5",
+          "ret15",
+          "mean20",
+          "var20",
+          "vol30",
+          "range",
+          "close_pos"
+        ],
+        "train_class_dist": {
+          "DOWN": {
+            "count": 52437,
+            "share": 0.1881
+          },
+          "NEUTRAL": {
+            "count": 174202,
+            "share": 0.6248
+          },
+          "UP": {
+            "count": 52161,
+            "share": 0.1871
+          }
+        },
+        "params": {
+          "C": 1.0,
+          "class_weight": null,
+          "dual": false,
+          "fit_intercept": true,
+          "intercept_scaling": 1,
+          "l1_ratio": 0.0,
+          "max_iter": 500,
+          "n_jobs": null,
+          "penalty": "deprecated",
+          "random_state": null,
+          "solver": "lbfgs",
+          "tol": 0.0001,
+          "verbose": 0,
+          "warm_start": false
+        },
+        "seed": "n/a (lbfgs is deterministic)",
+        "n_iter": [
+          13
+        ],
+        "converged": true,
+        "train_seconds": 0.42,
+        "warnings": [],
+        "bundle_key": "bundle.joblib -> ['A'][5]"
+      },
+      "15": {
+        "kind": "L2 multinomial logistic regression (BaselineLogistic, StandardScaler fit on train)",
+        "n_train": 270600,
+        "n_val_used": 0,
+        "n_features": 8,
+        "features": [
+          "ret1",
+          "ret5",
+          "ret15",
+          "mean20",
+          "var20",
+          "vol30",
+          "range",
+          "close_pos"
+        ],
+        "train_class_dist": {
+          "DOWN": {
+            "count": 57897,
+            "share": 0.214
+          },
+          "NEUTRAL": {
+            "count": 155113,
+            "share": 0.5732
+          },
+          "UP": {
+            "count": 57590,
+            "share": 0.2128
+          }
+        },
+        "params": {
+          "C": 1.0,
+          "class_weight": null,
+          "dual": false,
+          "fit_intercept": true,
+          "intercept_scaling": 1,
+          "l1_ratio": 0.0,
+          "max_iter": 500,
+          "n_jobs": null,
+          "penalty": "deprecated",
+          "random_state": null,
+          "solver": "lbfgs",
+          "tol": 0.0001,
+          "verbose": 0,
+          "warm_start": false
+        },
+        "seed": "n/a (lbfgs is deterministic)",
+        "n_iter": [
+          15
+        ],
+        "converged": true,
+        "train_seconds": 0.58,
+        "warnings": [],
+        "bundle_key": "bundle.joblib -> ['A'][15]"
+      },
+      "30": {
+        "kind": "L2 multinomial logistic regression (BaselineLogistic, StandardScaler fit on train)",
+        "n_train": 258300,
+        "n_val_used": 0,
+        "n_features": 8,
+        "features": [
+          "ret1",
+          "ret5",
+          "ret15",
+          "mean20",
+          "var20",
+          "vol30",
+          "range",
+          "close_pos"
+        ],
+        "train_class_dist": {
+          "DOWN": {
+            "count": 59193,
+            "share": 0.2292
+          },
+          "NEUTRAL": {
+            "count": 139990,
+            "share": 0.542
+          },
+          "UP": {
+            "count": 59117,
+            "share": 0.2289
+          }
+        },
+        "params": {
+          "C": 1.0,
+          "class_weight": null,
+          "dual": false,
+          "fit_intercept": true,
+          "intercept_scaling": 1,
+          "l1_ratio": 0.0,
+          "max_iter": 500,
+          "n_jobs": null,
+          "penalty": "deprecated",
+          "random_state": null,
+          "solver": "lbfgs",
+          "tol": 0.0001,
+          "verbose": 0,
+          "warm_start": false
+        },
+        "seed": "n/a (lbfgs is deterministic)",
+        "n_iter": [
+          14
+        ],
+        "converged": true,
+        "train_seconds": 0.51,
+        "warnings": [],
+        "bundle_key": "bundle.joblib -> ['A'][30]"
+      }
+    },
+    "D": {
+      "5": {
+        "kind": "FusionBlend = (1-w)*LightGBM + w*L2-logistic (logit leg fit on train only)",
+        "n_train": 278800,
+        "n_val_used": 91800,
+        "val_usage": "LightGBM eval_set for early stopping (multi_logloss, patience 50) -- nothing else",
+        "n_features": 42,
+        "features": [
+          "ret1",
+          "ret5",
+          "ret15",
+          "mean20",
+          "var20",
+          "vol30",
+          "cov20",
+          "beta20",
+          "mkt_ret1",
+          "mkt_vol20",
+          "range",
+          "close_pos",
+          "vol_z",
+          "tod",
+          "regime_calm",
+          "regime_bull",
+          "regime_volatile",
+          "regime_bear",
+          "n_sent",
+          "n_ev_Earnings",
+          "n_ev_M&A",
+          "n_ev_Regulation",
+          "n_ev_RBI/Rates",
+          "n_ev_Geopolitical",
+          "n_ev_Legal/Fraud",
+          "n_ev_Management",
+          "n_ev_Other",
+          "n_rel",
+          "n_minutes",
+          "h_mean",
+          "h_std",
+          "h_sim",
+          "ret1_vol",
+          "ret5_vol",
+          "ret15_vol",
+          "mkt_rel",
+          "sent_x_bull",
+          "sent_x_vol",
+          "sent_x_volz",
+          "sent_x_h",
+          "sent_over_vol",
+          "hmean_over_vol"
+        ],
+        "train_class_dist": {
+          "DOWN": {
+            "count": 52437,
+            "share": 0.1881
+          },
+          "NEUTRAL": {
+            "count": 174202,
+            "share": 0.6248
+          },
+          "UP": {
+            "count": 52161,
+            "share": 0.1871
+          }
+        },
+        "val_class_dist": {
+          "DOWN": {
+            "count": 17581,
+            "share": 0.1915
+          },
+          "NEUTRAL": {
+            "count": 56517,
+            "share": 0.6157
+          },
+          "UP": {
+            "count": 17702,
+            "share": 0.1928
+          }
+        },
+        "lgbm_params": {
+          "objective": "multiclass",
+          "num_class": 3,
+          "random_state": 7,
+          "verbose": -1,
+          "n_jobs": -1,
+          "n_estimators": 3000,
+          "learning_rate": 0.03,
+          "num_leaves": 7,
+          "min_child_samples": 300,
+          "reg_lambda": 10,
+          "subsample": 0.8,
+          "subsample_freq": 1,
+          "colsample_bytree": 0.5
+        },
+        "early_stopping_rounds": 50,
+        "seed": 7,
+        "best_iteration": 173,
+        "stopped_early": true,
+        "early_stopping_val_multi_logloss_at_best_iter": 0.9164998741047968,
+        "early_stopping_note": "stopping criterion only; NOT a performance estimate",
+        "blend_logit_weight": 0.25,
+        "logit_leg": {
+          "C": 0.05,
+          "max_iter": 300,
+          "n_iter": [
+            37
+          ],
+          "converged": true
+        },
+        "train_seconds": 11.28,
+        "warnings": [
+          "LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)"
+        ],
+        "artifact": "models_real/stage_d4_mac/lgbm_D_h5.txt",
+        "bundle_key": "bundle.joblib -> ['D'][5]"
+      },
+      "15": {
+        "kind": "FusionBlend = (1-w)*LightGBM + w*L2-logistic (logit leg fit on train only)",
+        "n_train": 270600,
+        "n_val_used": 89100,
+        "val_usage": "LightGBM eval_set for early stopping (multi_logloss, patience 50) -- nothing else",
+        "n_features": 42,
+        "features": [
+          "ret1",
+          "ret5",
+          "ret15",
+          "mean20",
+          "var20",
+          "vol30",
+          "cov20",
+          "beta20",
+          "mkt_ret1",
+          "mkt_vol20",
+          "range",
+          "close_pos",
+          "vol_z",
+          "tod",
+          "regime_calm",
+          "regime_bull",
+          "regime_volatile",
+          "regime_bear",
+          "n_sent",
+          "n_ev_Earnings",
+          "n_ev_M&A",
+          "n_ev_Regulation",
+          "n_ev_RBI/Rates",
+          "n_ev_Geopolitical",
+          "n_ev_Legal/Fraud",
+          "n_ev_Management",
+          "n_ev_Other",
+          "n_rel",
+          "n_minutes",
+          "h_mean",
+          "h_std",
+          "h_sim",
+          "ret1_vol",
+          "ret5_vol",
+          "ret15_vol",
+          "mkt_rel",
+          "sent_x_bull",
+          "sent_x_vol",
+          "sent_x_volz",
+          "sent_x_h",
+          "sent_over_vol",
+          "hmean_over_vol"
+        ],
+        "train_class_dist": {
+          "DOWN": {
+            "count": 57897,
+            "share": 0.214
+          },
+          "NEUTRAL": {
+            "count": 155113,
+            "share": 0.5732
+          },
+          "UP": {
+            "count": 57590,
+            "share": 0.2128
+          }
+        },
+        "val_class_dist": {
+          "DOWN": {
+            "count": 19697,
+            "share": 0.2211
+          },
+          "NEUTRAL": {
+            "count": 49554,
+            "share": 0.5562
+          },
+          "UP": {
+            "count": 19849,
+            "share": 0.2228
+          }
+        },
+        "lgbm_params": {
+          "objective": "multiclass",
+          "num_class": 3,
+          "random_state": 7,
+          "verbose": -1,
+          "n_jobs": -1,
+          "n_estimators": 3000,
+          "learning_rate": 0.03,
+          "num_leaves": 7,
+          "min_child_samples": 300,
+          "reg_lambda": 10,
+          "subsample": 0.8,
+          "subsample_freq": 1,
+          "colsample_bytree": 0.5
+        },
+        "early_stopping_rounds": 50,
+        "seed": 7,
+        "best_iteration": 157,
+        "stopped_early": true,
+        "early_stopping_val_multi_logloss_at_best_iter": 0.9764394191390064,
+        "early_stopping_note": "stopping criterion only; NOT a performance estimate",
+        "blend_logit_weight": 0.25,
+        "logit_leg": {
+          "C": 0.05,
+          "max_iter": 300,
+          "n_iter": [
+            40
+          ],
+          "converged": true
+        },
+        "train_seconds": 12.16,
+        "warnings": [
+          "LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)"
+        ],
+        "artifact": "models_real/stage_d4_mac/lgbm_D_h15.txt",
+        "bundle_key": "bundle.joblib -> ['D'][15]"
+      },
+      "30": {
+        "kind": "FusionBlend = (1-w)*LightGBM + w*L2-logistic (logit leg fit on train only)",
+        "n_train": 258300,
+        "n_val_used": 85050,
+        "val_usage": "LightGBM eval_set for early stopping (multi_logloss, patience 50) -- nothing else",
+        "n_features": 42,
+        "features": [
+          "ret1",
+          "ret5",
+          "ret15",
+          "mean20",
+          "var20",
+          "vol30",
+          "cov20",
+          "beta20",
+          "mkt_ret1",
+          "mkt_vol20",
+          "range",
+          "close_pos",
+          "vol_z",
+          "tod",
+          "regime_calm",
+          "regime_bull",
+          "regime_volatile",
+          "regime_bear",
+          "n_sent",
+          "n_ev_Earnings",
+          "n_ev_M&A",
+          "n_ev_Regulation",
+          "n_ev_RBI/Rates",
+          "n_ev_Geopolitical",
+          "n_ev_Legal/Fraud",
+          "n_ev_Management",
+          "n_ev_Other",
+          "n_rel",
+          "n_minutes",
+          "h_mean",
+          "h_std",
+          "h_sim",
+          "ret1_vol",
+          "ret5_vol",
+          "ret15_vol",
+          "mkt_rel",
+          "sent_x_bull",
+          "sent_x_vol",
+          "sent_x_volz",
+          "sent_x_h",
+          "sent_over_vol",
+          "hmean_over_vol"
+        ],
+        "train_class_dist": {
+          "DOWN": {
+            "count": 59193,
+            "share": 0.2292
+          },
+          "NEUTRAL": {
+            "count": 139990,
+            "share": 0.542
+          },
+          "UP": {
+            "count": 59117,
+            "share": 0.2289
+          }
+        },
+        "val_class_dist": {
+          "DOWN": {
+            "count": 20006,
+            "share": 0.2352
+          },
+          "NEUTRAL": {
+            "count": 45035,
+            "share": 0.5295
+          },
+          "UP": {
+            "count": 20009,
+            "share": 0.2353
+          }
+        },
+        "lgbm_params": {
+          "objective": "multiclass",
+          "num_class": 3,
+          "random_state": 7,
+          "verbose": -1,
+          "n_jobs": -1,
+          "n_estimators": 3000,
+          "learning_rate": 0.03,
+          "num_leaves": 7,
+          "min_child_samples": 300,
+          "reg_lambda": 10,
+          "subsample": 0.8,
+          "subsample_freq": 1,
+          "colsample_bytree": 0.5
+        },
+        "early_stopping_rounds": 50,
+        "seed": 7,
+        "best_iteration": 138,
+        "stopped_early": true,
+        "early_stopping_val_multi_logloss_at_best_iter": 0.993557408986121,
+        "early_stopping_note": "stopping criterion only; NOT a performance estimate",
+        "blend_logit_weight": 0.25,
+        "logit_leg": {
+          "C": 0.05,
+          "max_iter": 300,
+          "n_iter": [
+            41
+          ],
+          "converged": true
+        },
+        "train_seconds": 10.29,
+        "warnings": [
+          "LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)"
+        ],
+        "artifact": "models_real/stage_d4_mac/lgbm_D_h30.txt",
+        "bundle_key": "bundle.joblib -> ['D'][30]"
+      }
+    }
+  },
+  "event_memory": {
+    "events_total": 10854,
+    "events_kept": 7923,
+    "cutoff_tmin": 40874.0,
+    "rule": "known_at <= last VAL bar tmin"
+  },
+  "artifacts": [
+    {
+      "path": "models_real/stage_d4_mac/bundle.joblib",
+      "bytes": 1337794,
+      "sha256": "d65fc42a37f6286e4d3253330de64b190b043af8acca3be806b393c65c3cfdb6"
+    },
+    {
+      "path": "models_real/stage_d4_mac/event_memory.npz",
+      "bytes": 24466970,
+      "sha256": "4f0993add4d4e389349c2fb54550df6410e8a5416f5051f3f6999102f8a3742c"
+    },
+    {
+      "path": "models_real/stage_d4_mac/lgbm_D_h5.txt",
+      "bytes": 490737,
+      "sha256": "19eb2511552f9dd4bae604ec96338b776564726788f1ab420d12bbc1fa46169d"
+    },
+    {
+      "path": "models_real/stage_d4_mac/lgbm_D_h15.txt",
+      "bytes": 445691,
+      "sha256": "bc1e2a5c510095c9ccf0553a44344bacd36505ea81d4d9ec38ec58da77e4817f"
+    },
+    {
+      "path": "models_real/stage_d4_mac/lgbm_D_h30.txt",
+      "bytes": 392259,
+      "sha256": "83d6dad4cae0f402ab83c68e75a5235e2e31b8b8efa13df23675d569d6dfd1c8"
+    }
+  ],
+  "warnings_all": [
+    "LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)",
+    "LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)",
+    "LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead. (sklearn.py:1106)"
+  ],
+  "total_seconds": 109.4,
+  "finbert_cache_unchanged": true
+}

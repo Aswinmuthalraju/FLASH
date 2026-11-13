@@ -1,0 +1,72 @@
+{
+  "stage": "improved_v1",
+  "created_utc": "2026-11-12T18:57:17+00:00",
+  "improvements": [
+    "Multi-scale temporal features (ret30, ret60, vol10, momentum_rsi, price_accel, etc.)",
+    "Cross-asset dispersion features (inspired by TimesFM variate attention)",
+    "Two-stage model architecture (Movement\u2192Direction, breaks NEUTRAL trap)",
+    "Class-weighted LightGBM training (is_unbalance=True + sample_weight)",
+    "Multiple barrier multipliers tested (k=0.6, 0.75, 1.0)",
+    "Walk-forward isotonic calibration",
+    "Enhanced volatility-regime interaction features"
+  ],
+  "timesfm_inspirations": {
+    "multi_scale_patches": "Added ret30, ret60, vol10 (analogous to TimesFM's multi-scale patch tokenization at 32/64 bars)",
+    "variate_attention": "Added dispersion and sector return features (proxy for cross-asset attention)",
+    "reversible_normalization": "Vol-normalised returns and z-score interactions (analogous to Iterative RevIN)",
+    "decomposed_forecasting": "Two-stage Movement\u2192Direction (analogous to TimesFM's trend+scale decomposition)"
+  },
+  "horizons": {
+    "5": {
+      "approach": "class_weighted_3class",
+      "k": 1.0,
+      "auc": 0.5872419503733144,
+      "f1": 0.3719708104941421,
+      "brier": 0.5638717544593254,
+      "ece": 0.03456756433596616,
+      "pred_dist": [
+        9998,
+        72034,
+        9768
+      ],
+      "original_D_auc": 0.5886,
+      "improvement_auc": -0.0013580496266856201,
+      "improvement_brier": 0.028271754459325393
+    },
+    "15": {
+      "approach": "class_weighted_3class",
+      "k": 1.0,
+      "auc": 0.5891897953167847,
+      "f1": 0.3749973341458426,
+      "brier": 0.5956055391166891,
+      "ece": 0.02257694686316054,
+      "pred_dist": [
+        13141,
+        65751,
+        10208
+      ],
+      "original_D_auc": 0.5916,
+      "improvement_auc": -0.002410204683215289,
+      "improvement_brier": 0.016905539116689128
+    },
+    "30": {
+      "approach": "two_stage",
+      "k": 1.0,
+      "auc": 0.6096099293014084,
+      "f1": 0.2797499979935395,
+      "brier": 0.5869124078531134,
+      "ece": 0.006343274764571672,
+      "pred_dist": [
+        2949,
+        80858,
+        1243
+      ],
+      "original_D_auc": 0.6018,
+      "improvement_auc": 0.007809929301408447,
+      "improvement_brier": -0.0034875921468866533,
+      "move_auc": 0.6368824536363424,
+      "dir_auc": 0.526799814021509
+    }
+  },
+  "total_seconds": 340.9
+}

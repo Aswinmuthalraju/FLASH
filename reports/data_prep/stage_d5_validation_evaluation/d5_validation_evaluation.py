@@ -60,10 +60,14 @@ from src.models.fusion_lgbm import load_booster  # noqa: E402
 CONFIG = ROOT / "configs" / "real.yaml"
 MARKET, NEWS = "data/raw/market", "data/raw/news.csv"
 FINBERT_CACHE = ROOT / "data" / "processed_real" / "finbert_cache.npz"
-D4_DIR = ROOT / "models_real" / "stage_d4"
-D4_REPORTS = ROOT / "reports" / "data_prep" / "stage_d4_model_training"
+# Optional run tag (same as d4_train_driver.py): FLASH_D4_RUN_TAG=stage_d4_mac evaluates models_real/<tag>/ and writes to
+# reports/data_prep/<tag>_d5_validation/, leaving the original D4/D5 record untouched.
+_TAG = os.environ.get("FLASH_D4_RUN_TAG", "").strip()
+D4_DIR = ROOT / "models_real" / (_TAG or "stage_d4")
+D4_REPORTS = ROOT / "reports" / "data_prep" / (_TAG or "stage_d4_model_training")
 D3_JSON = ROOT / "reports" / "data_prep" / "stage_d3_validation_baselines" / "validation_baselines_real.json"
-OUT = ROOT / "reports" / "data_prep" / "stage_d5_validation_evaluation"
+OUT = ROOT / "reports" / "data_prep" / (f"{_TAG}_d5_validation" if _TAG else "stage_d5_validation_evaluation")
+OUT.mkdir(parents=True, exist_ok=True)
 OUT_METRICS = OUT / "d5_validation_metrics.json"
 OUT_META = OUT / "d5_run_metadata.json"
 OUT_PROBS = OUT / "d5_val_probabilities.npz"

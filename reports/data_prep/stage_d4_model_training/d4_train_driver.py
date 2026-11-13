@@ -28,6 +28,7 @@ Differences from scripts/train.py (deliberate, D4 scope):
 
 Run (from the repo root):
     .venv/Scripts/python.exe reports/data_prep/stage_d4_model_training/d4_train_driver.py
+    FLASH_D4_RUN_TAG=stage_d4_mac .venv/bin/python reports/data_prep/stage_d4_model_training/d4_train_driver.py
 """
 from __future__ import annotations
 
@@ -62,8 +63,12 @@ CONFIG = ROOT / "configs" / "real.yaml"
 MARKET = "data/raw/market"
 NEWS = "data/raw/news.csv"
 FINBERT_CACHE = ROOT / "data" / "processed_real" / "finbert_cache.npz"
-MODEL_DIR = ROOT / "models_real" / "stage_d4"
-REPORT_DIR = ROOT / "reports" / "data_prep" / "stage_d4_model_training"
+# Optional run tag: FLASH_D4_RUN_TAG=stage_d4_mac writes to models_real/<tag>/ and reports/data_prep/<tag>/ instead of
+# the original D4 locations, so a re-run on another machine never overwrites (or conflicts with) the D4 record.
+_TAG = os.environ.get("FLASH_D4_RUN_TAG", "").strip()
+MODEL_DIR = ROOT / "models_real" / (_TAG or "stage_d4")
+REPORT_DIR = ROOT / "reports" / "data_prep" / (_TAG or "stage_d4_model_training")
+REPORT_DIR.mkdir(parents=True, exist_ok=True)
 META_JSON = REPORT_DIR / "d4_training_metadata.json"
 INVENTORY_JSON = REPORT_DIR / "d4_artifact_inventory.json"
 SHA_FILE = REPORT_DIR / "d4_artifacts.sha256"
